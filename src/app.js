@@ -1,20 +1,12 @@
 import './style.scss'
 import * as THREE from 'three'
 
-import { gsap } from 'gsap'
-
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-import * as CANNON from 'cannon-es'
-import cannonDebugger from 'cannon-es-debugger'
-
-
 import vertexShaderScreen from './shaders/screen/vertex.glsl'
-
 import fragmentShaderScreen from './shaders/screen/fragment.glsl'
 
 import vertexShaderHonk from './shaders/honk/vertex.glsl'
-
 import fragmentShaderHonk from './shaders/honk/fragment.glsl'
 
 
@@ -77,10 +69,13 @@ const materialText = new THREE.ShaderMaterial({
   }
 })
 
+
+
+//Mouse stuff
 window.addEventListener('mousemove', function (e) {
   materialScreen.uniforms.uMouse.value.x =  (e.clientX / window.innerWidth) * 2 - 1
   materialScreen.uniforms.uMouse.value.y = -(event.clientY / window.innerHeight) * 2 + 1
-  console.log(materialScreen.uniforms.uMouse)
+
 })
 
 
@@ -101,8 +96,6 @@ const sizes = {
 }
 
 window.addEventListener('resize', () =>{
-
-
 
   // Update sizes
   sizes.width = window.innerWidth
@@ -151,6 +144,8 @@ const raycaster = new THREE.Raycaster()
 const mouse = new THREE.Vector2()
 
 
+//Text stuff
+
 let textMesh
 var loader = new THREE.FontLoader()
 loader.load( 'Tapeworm_RegularH.json', function ( font ) {
@@ -179,6 +174,9 @@ loader.load( 'Tapeworm_RegularH.json', function ( font ) {
   textMesh.position.z-=15
   textMesh.position.x-=8
 })
+
+
+//Model stuff
 
 let sceneGroup, mixer
 gtlfLoader.load(
